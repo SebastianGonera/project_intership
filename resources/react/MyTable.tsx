@@ -1,4 +1,10 @@
-function MyTable({data, openModal}: { data: any[]; openModal: (name: string) => void }) {
+function MyTable({data, openModal, openUpdateForm}:
+                     {
+                         data: any[];
+                         openModal: (name: string) => void ;
+                         openUpdateForm:(newAmount: number, name_:string)=>void
+                     }
+    ) {
     return (
         <div className="overflow-x-auto">
             <table className="table table-zebra">
@@ -17,10 +23,16 @@ function MyTable({data, openModal}: { data: any[]; openModal: (name: string) => 
                                 <td>{item[0]}</td>
                                 <td>{item[1]}</td>
                                 <td>
-                                    <button className="btn">Update</button>
+                                    <button
+                                        className="btn"
+                                        onClick={()=>openUpdateForm(item[1], item[0])}
+                                    >Update</button>
                                 </td>
                                 <td>
-                                    <button className="btn btn-error" onClick={()=>openModal(item[0])}>Delete</button>
+                                    <button
+                                        className="btn btn-error"
+                                        onClick={()=>openModal(item[0])}
+                                    >Delete</button>
                                 </td>
                             </tr>
                         ))

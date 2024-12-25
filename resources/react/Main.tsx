@@ -1,8 +1,9 @@
 import MyChart from "./MyChart";
 import {useEffect, useState} from "react";
-import {getChannels, deleteChannel} from "./services";
+import {getChannels, deleteChannel, updateAmount} from "./services";
 import MyTable from "./MyTable";
 import DeleteModalDialog from "./DeleteModalDialog";
+import UpdateForm from "./UpdateForm";
 
 
 function Main() {
@@ -11,6 +12,10 @@ function Main() {
 
     const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
     const [name, setName] = useState<string>("");
+
+    const [isUpdateFormOpen, setIsUpdateFormOpen] = useState<boolean>(false);
+   const [amount, setAmount] = useState<number|string>();
+
     const closeModal = () =>{
         setIsModalOpen(false);
     }
@@ -18,6 +23,26 @@ function Main() {
         setName(name_);
         setIsModalOpen(true);
     }
+
+    const closeUpdateForm = () =>{
+        setIsUpdateFormOpen(false);
+    }
+    const openUpdateForm = (newAmount:number, name_: string)=>{
+        setName(name_);
+        setAmount(newAmount);
+        setIsUpdateFormOpen(true);
+    }
+    // @ts-ignore
+    const handleUpdate= async(newAmount: number)=>{
+      try{
+          closeUpdateForm();
+          await updateAmount(name, newAmount);
+          await fetchData();
+      }
+      catch (error) {
+          console.error('Error updating channel:', error);
+      }
+    };
 
     // @ts-ignore
     const handleDelete = async(name: string)=>{
@@ -52,7 +77,11 @@ function Main() {
     return(
         <div>
             <MyChart data={data}></MyChart>
-            <MyTable data={data} openModal={openModal}></MyTable>
+            <MyTable
+                data={data}
+                openModal={openModal}
+                openUpdateForm={openUpdateForm}
+            />
             {isModalOpen && (
                 <DeleteModalDialog
                     name={name}
@@ -60,6 +89,17 @@ function Main() {
                     handleDelete={handleDelete}
                 />
             )}
+
+            {
+                isUpdateFormOpen && (
+                    <UpdateForm
+                        name={name}
+                        currentAmount={amount}
+                        onUpdate={handleUpdate}
+                        closeUpdateForm={closeUpdateForm}
+                    />
+                )
+            }
         </div>
     );
 }

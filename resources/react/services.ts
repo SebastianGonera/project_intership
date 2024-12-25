@@ -15,6 +15,24 @@ export const getChannels = async () => {
     }
 };
 
+export const updateAmount = async(name_:string, amount_: number)=>{
+    try{
+        const response = await utils.put(`acquisition-channels/${name_}`, {
+            amount: amount_
+        });
+        if (response.status != 201) {
+            throw new Error(response.data);
+        } else {
+            return response.data;
+        }
+
+    }
+    catch (e) {
+        console.error(e.message);
+        return [];
+    }
+}
+
 export const deleteChannel = async(name: string)=>{
     try{
         const response = await utils.delete(`acquisition-channels/${name}`);
