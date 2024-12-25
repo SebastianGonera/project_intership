@@ -8,6 +8,7 @@ export default {
         './resources/**/*.blade.php',
         './resources/**/*.js',
         './resources/**/*.vue',
+        './resources/react/*.tsx'
     ],
     theme: {
         extend: {
@@ -16,5 +17,7 @@ export default {
             },
         },
     },
-    plugins: [],
+    plugins: [
+        require('daisyui'),
+    ],
 };
