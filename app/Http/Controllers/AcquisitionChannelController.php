@@ -21,7 +21,7 @@ class AcquisitionChannelController extends Controller
             return response()->json($channels);
         }
         catch (Exception $e) {
-            return response()->json($e->getMessage(), 500);
+            return response()->json(['message' => $e->getMessage()], 500);
         }
 
     }
@@ -32,14 +32,9 @@ class AcquisitionChannelController extends Controller
     public function store(AcquisitionChannelRequest $request): JsonResponse
     {
         try{
-            $newChannel = AcquisitionChannel::create($request->validated());
-            $responseBody = [
-                "name" => $newChannel->name,
-                "amount" => $newChannel->amount
-            ];
+            AcquisitionChannel::create($request->validated());
             return response()->json([
                 'message' => 'Channel added successfully',
-                'channel' => $responseBody,
                 ], 200);
 
         }catch (Exception $e) {
@@ -56,13 +51,9 @@ class AcquisitionChannelController extends Controller
         try{
             $channel = AcquisitionChannel::where('name', $name)->firstOrFail();
             $channel->update($request->validated());
-            $responseBody = [
-                "name" => $channel->name,
-                "amount" => $channel->amount
-            ];
+
             return response()->json([
                 'message' => 'Channel updated successfully',
-                'channel' => $responseBody,
             ], 201);
 
         }catch (ModelNotFoundException $e) {

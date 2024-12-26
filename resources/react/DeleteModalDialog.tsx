@@ -10,7 +10,7 @@ function DeleteModalDialog({name, closeModal, handleDelete}: {name: string,
             <p className="py-4">If you want delete {name} channel press OK button.</p>
             <form method="dialog">
                 <button className="btn btn-info" onClick={handleClick}>OK</button>
-                <button className="btn btn-squar absolute right-2 top-2" onClick={closeModal}>
+                <button className="btn btn-active btn-squar absolute right-2 top-2" onClick={closeModal}>
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
                         className="h-6 w-6"

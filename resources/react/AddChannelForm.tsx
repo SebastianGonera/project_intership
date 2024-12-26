@@ -69,9 +69,9 @@ function AddChannelForm({onAdd, closeAddForm}: {
 
     return (
         <div className="modal z-10 modal-middle modal-open">
-            <div className="modal-box">
+            <div className="modal-box flex justify-center items-center">
 
-                <form onSubmit={handleSubmit}>
+                <form  onSubmit={handleSubmit}>
                     <label htmlFor="name_input">Channel name: </label>
                     <div>
                         <input
@@ -106,7 +106,7 @@ function AddChannelForm({onAdd, closeAddForm}: {
                         disabled={!isFormValid()}>
                         Confirm
                     </button>
-                    <button className="btn btn-squar absolute right-2 top-2" onClick={closeAddForm}>
+                    <button className="btn btn-active btn-squar absolute right-2 top-2" onClick={closeAddForm}>
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
                             className="h-6 w-6"

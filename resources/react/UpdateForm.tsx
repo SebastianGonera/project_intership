@@ -58,7 +58,7 @@ function UpdateForm({name, currentAmount, onUpdate, closeUpdateForm}: {name: str
                       {error && <span className="text-error mt-1 text-sm">{error}</span>}
                 </div>
                 <button type="submit" className="btn btn-primary mt-2" disabled={!!error}>Update</button>
-                <button className="btn btn-squar absolute right-2 top-2" onClick={closeUpdateForm}>
+                <button className="btn btn-active btn-squar absolute right-2 top-2" onClick={closeUpdateForm}>
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
                         className="h-6 w-6"

@@ -24,7 +24,7 @@ function MyTable({data, openModal, openUpdateForm}:
                                 <td>{item[1]}</td>
                                 <td>
                                     <button
-                                        className="btn"
+                                        className="btn  btn-active btn-ghost"
                                         onClick={()=>openUpdateForm(item[1], item[0])}
                                     >Update</button>
                                 </td>

@@ -5,6 +5,7 @@ import MyTable from "./MyTable";
 import DeleteModalDialog from "./DeleteModalDialog";
 import UpdateForm from "./UpdateForm";
 import AddChannelForm from "./AddChannelForm";
+import {ToastContainer} from "react-toastify";
 
 
 function Main() {
@@ -92,13 +93,14 @@ function Main() {
     if (loading) {
         return (
             <div className="flex justify-center items-center min-h-screen">
-                <span className="loading loading-dots loading-lg">Loading</span>
+                <span className="loading loading-dots loading-lg"></span>
             </div>
         );
     }
 
     return (
         <div className="flex flex-col justify-center items-center min-h-screen">
+            <ToastContainer autoClose={2000}/>
             <div className="mt-2 mb-2 ml-2">
                 <button className="btn btn-primary" onClick={openAddForm}>
                     Add New Channel
