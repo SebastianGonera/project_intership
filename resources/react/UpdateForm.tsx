@@ -43,7 +43,7 @@ function UpdateForm({name, currentAmount, onUpdate, closeUpdateForm}: {name: str
     };
 
     return (
-        <span className="modal z-10 modal-middle modal-open">
+        <div className="modal z-10 modal-middle modal-open">
         <div className="modal-box">
             <h3 className="font-bold text-lg">Update amount of {name}</h3>
             <form onSubmit={handleSubmit}>
@@ -75,7 +75,7 @@ function UpdateForm({name, currentAmount, onUpdate, closeUpdateForm}: {name: str
             </form>
 
         </div>
-    </span>
+    </div>
     );
 }
 

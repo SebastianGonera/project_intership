@@ -38,7 +38,7 @@ class AcquisitionChannelController extends Controller
                 "amount" => $newChannel->amount
             ];
             return response()->json([
-                'message' => 'Channel updated successfully',
+                'message' => 'Channel added successfully',
                 'channel' => $responseBody,
                 ], 200);
 

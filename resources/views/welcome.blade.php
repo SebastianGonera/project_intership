@@ -10,7 +10,6 @@
     @vite('resources/react/app.tsx')
 </head>
 <body>
-<h1>testoqy</h1>
 <div id="app"></div>
 </body>
 </html>

@@ -4,7 +4,7 @@ function DeleteModalDialog({name, closeModal, handleDelete}: {name: string,
         handleDelete(name)
     };
     return (
-        <span id="my_modal_3" className="modal z-10 modal-middle modal-open">
+        <div id="my_modal_3" className="modal z-10 modal-middle modal-open">
         <div className="modal-box">
             <h3 className="font-bold text-lg">Deleting</h3>
             <p className="py-4">If you want delete {name} channel press OK button.</p>
@@ -27,7 +27,7 @@ function DeleteModalDialog({name, closeModal, handleDelete}: {name: string,
             </form>
 
         </div>
-    </span>
+    </div>
     );
 }
 
