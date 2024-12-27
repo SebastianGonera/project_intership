@@ -16,7 +16,7 @@ function Main() {
     const [name, setName] = useState<string>("");
 
     const [isUpdateFormOpen, setIsUpdateFormOpen] = useState<boolean>(false);
-    const [amount, setAmount] = useState<number | string>();
+    const [amount, setAmount] = useState<number | string>("");
 
     const [isAddFormOpen, setIsAddFormOpen] = useState<boolean>(false);
 
@@ -41,7 +41,6 @@ function Main() {
     const openAddForm = ()=> setIsAddFormOpen(true);
     const closeAddForm=()=>setIsAddFormOpen(false);
 
-    // @ts-ignore
     const handleAdd = async (newName:string, newAmount: number) => {
         try {
             closeAddForm();
@@ -52,7 +51,6 @@ function Main() {
         }
     };
 
-    // @ts-ignore
     const handleUpdate = async (newAmount: number) => {
         try {
             closeUpdateForm();
@@ -63,7 +61,7 @@ function Main() {
         }
     };
 
-    // @ts-ignore
+
     const handleDelete = async (name: string) => {
         try {
             closeModal();
@@ -73,12 +71,13 @@ function Main() {
             console.error('Error deleting channel:', error);
         }
     }
-    // @ts-ignore
+
     const fetchData = async () => {
         const result = await getChannels();
-        const chartData = [
+        let chartData: any[];
+        chartData = [
             ["Channel", "Amount"],
-            ...result
+            ...result ?? []
         ];
 
         setData(chartData);

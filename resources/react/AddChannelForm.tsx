@@ -5,7 +5,7 @@ function AddChannelForm({onAdd, closeAddForm}: {
     closeAddForm:()=>void
 }){
     const [amount, setAmount] = useState<string | number>("");
-    const [name, setName] = useState<string | null>(null);
+    const [name, setName] = useState<string>("");
     const [amountError, setAmountError] = useState<string | null>(null);
     const [nameError, setNameError] = useState<string | null>(null);
 
@@ -60,7 +60,7 @@ function AddChannelForm({onAdd, closeAddForm}: {
         return nameError === null && amountError === null && name !== null && name !== "" && amount !== "";
     };
 
-    const handleSubmit = (event)=>{
+    const handleSubmit = (event: { preventDefault: () => void; })=>{
         event.preventDefault();
         if(validateAmount(amount) && validateName(name)){
           onAdd(name, Number(amount));
@@ -106,7 +106,10 @@ function AddChannelForm({onAdd, closeAddForm}: {
                         disabled={!isFormValid()}>
                         Confirm
                     </button>
-                    <button className="btn btn-active btn-squar absolute right-2 top-2" onClick={closeAddForm}>
+                    <button
+                        className="btn btn-active btn-squar absolute right-2 top-2"
+                        aria-label="close"
+                        onClick={closeAddForm}>
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
                             className="h-6 w-6"
@@ -114,9 +117,9 @@ function AddChannelForm({onAdd, closeAddForm}: {
                             viewBox="0 0 24 24"
                             stroke="currentColor">
                             <path
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                                stroke-width="2"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth="2"
                                 d="M6 18L18 6M6 6l12 12"/>
                         </svg>
                     </button>

@@ -1,7 +1,8 @@
-// @ts-ignore
-import ReactDOM from 'react-dom';
+import ReactDOM from 'react-dom/client';
 import Main from "./Main";
 
-ReactDOM.createRoot(document.getElementById('app')).render(
+const rootElement = document.getElementById('app');
+
+ReactDOM.createRoot(rootElement!).render(
     <Main></Main>
 );

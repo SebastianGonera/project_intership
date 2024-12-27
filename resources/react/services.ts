@@ -9,14 +9,14 @@ export const getChannels = async () => {
             new Error(response.data['message']);
         } else {
             let channels: any[];
-            channels = response.data.map(item => {
+            channels = response.data.map((item: { [x: string]: any; }) => {
                 return [item['name'], item['amount']];
             });
 
             return channels;
         }
     }
-    catch (e) {
+    catch (e:any) {
         console.error(e.message);
         toast['error'](e.message);
         return [];
@@ -38,7 +38,7 @@ export const addChannel = async(name_:string, amount_: number)=>{
             toast['success'](message);
         }
     }
-    catch (e) {
+    catch (e:any) {
         console.error(e.message);
         toast['error'](e.message);
         return [];
@@ -61,7 +61,7 @@ export const updateAmount = async(name_:string, amount_: number)=>{
             toast['success'](message);
         }
     }
-    catch (e) {
+    catch (e:any) {
         console.error(e.message);
         toast['error'](e.message);
         return [];
@@ -80,7 +80,7 @@ export const deleteChannel = async(name: string)=>{
             toast['success'](message);
         }
     }
-    catch (e) {
+    catch (e:any) {
         console.error(e.message);
         toast['error'](e.message);
         return [];

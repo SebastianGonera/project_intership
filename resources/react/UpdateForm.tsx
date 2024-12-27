@@ -18,7 +18,7 @@ function UpdateForm({name, currentAmount, onUpdate, closeUpdateForm}: {name: str
       setError(null);
       return true;
     };
-    const handleChange = (event)=>{
+    const handleChange = (event: { target: { value: any; }; })=>{
         const inputValue= event.target.value;
 
         if (inputValue === ""){
@@ -35,7 +35,7 @@ function UpdateForm({name, currentAmount, onUpdate, closeUpdateForm}: {name: str
         }
     };
 
-    const handleSubmit = (event)=>{
+    const handleSubmit = (event: { preventDefault: () => void; })=>{
         event.preventDefault();
         if(validateValue(String(value))){
             onUpdate(Number(value));
@@ -57,25 +57,27 @@ function UpdateForm({name, currentAmount, onUpdate, closeUpdateForm}: {name: str
                 <div>
                       {error && <span className="text-error mt-1 text-sm">{error}</span>}
                 </div>
-                <button type="submit" className="btn btn-primary mt-2" disabled={!!error}>Update</button>
-                <button className="btn btn-active btn-squar absolute right-2 top-2" onClick={closeUpdateForm}>
+                <button type="submit" className="btn btn-primary mt-2" aria-label="confirmUpdate" disabled={!!error}>Update</button>
+                <button className="btn btn-active btn-squar absolute right-2 top-2"
+                        aria-label="close"
+                        onClick={closeUpdateForm}>
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
                         className="h-6 w-6"
                         fill="none"
                         viewBox="0 0 24 24"
                         stroke="currentColor">
-                    <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                        d="M6 18L18 6M6 6l12 12"/>
+                        <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth="2"
+                            d="M6 18L18 6M6 6l12 12"/>
                     </svg>
                 </button>
             </form>
 
         </div>
-    </div>
+        </div>
     );
 }
 

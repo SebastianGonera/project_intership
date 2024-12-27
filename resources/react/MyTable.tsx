@@ -25,6 +25,7 @@ function MyTable({data, openModal, openUpdateForm}:
                                 <td>
                                     <button
                                         className="btn  btn-active btn-ghost"
+                                        aria-label={`update-${item[0]}`}
                                         onClick={()=>openUpdateForm(item[1], item[0])}
                                     >Update</button>
                                 </td>
