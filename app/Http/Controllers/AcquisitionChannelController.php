@@ -17,10 +17,14 @@ class AcquisitionChannelController extends Controller
     {
         try{
             $channels = AcquisitionChannel::all(['name', 'amount']);
+            if(count($channels) > 0){
+                return response()->json($channels);
+            }
+            else{
+                throw new Exception("Database error");
+            }
 
-            return response()->json($channels);
-        }
-        catch (Exception $e) {
+        }  catch (Exception $e) {
             return response()->json(['message' => $e->getMessage()], 500);
         }
 
@@ -33,11 +37,14 @@ class AcquisitionChannelController extends Controller
     {
         try{
             AcquisitionChannel::create($request->validated());
+
             return response()->json([
                 'message' => 'Channel added successfully',
-                ], 200);
+            ], 200);
 
-        }catch (Exception $e) {
+        } catch (ModelNotFoundException $e) {
+            return response()->json(['message' => 'Channel not found'], 404);
+        } catch (Exception $e) {
             return response()->json(['message' => $e->getMessage()], 500);
         }
     }
@@ -76,12 +83,11 @@ class AcquisitionChannelController extends Controller
             return $deleted
                 ? response()->json(['message' => 'Deleted successfully'], 200)
                 : response()->json(['message' => 'Failed to delete the channel'], 500);
+
         } catch (ModelNotFoundException $e) {
             return response()->json(['message' => 'Channel not found'], 404);
         } catch (Exception $e) {
             return response()->json(['message' => $e->getMessage()], 500);
         }
-
-
     }
 }
