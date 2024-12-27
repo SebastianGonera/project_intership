@@ -1,66 +1,58 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+## Command to launch the application ##
+`npm run build && php artisan serve`
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+## Command to run tests in Laravel ##
+Tests are in the folder **tests**.
+- unit tests
+  `php artisan test --testsuite=Unit`
 
-## About Laravel
+- 'integration' test
+  `php artisan test --filter AcquisitionChannelIntegrationTest`
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## Command to run tests in React ##
+Tests for React are in the folder **tests-react**, which is in **react** folder.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+Instead of *file_name*, enter the name of the file with the selected test.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+`npm test file_name.test.tsx`
 
-## Learning Laravel
+## Backend ##
+### Used: ###
+- PHP 8.3.4
+- Laravel 11
+- database: SQLite
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+### Done on the backend ###
+- added model and controller for AcquisitionChannel
+- added custom request for data validation
+- added factory and seeder to fill table **acquisition_channels** in database
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+## Frontend ##
+### Used: ###
+- React and react-dom version: ^18
+- TypeScript 5.4.5
+- tailwindcss ^3.4.13 and library daisyUI ^4.12.22
+- react-google-charts ^5.2.1
+- jest ^29.7.0
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## App ##
+![main view](img/main.png)
+The main application window is presented above.
 
-## Laravel Sponsors
+The adding and updating forms have field validation added.
+Thanks to this, the user cannot, for example, enter a negative number or string in the amount field.
+If the data is incorrect, an appropriate message will appear under the given
+field and the button will be unavailable/impossible to click.
+![add_form](img/addForm.png)
+![update_form](img/updateForm.png)
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+When the user clicks the delete button, a window will appear asking if he
+or she really wants to delete the channel. If the user is sure of this, the given channel will be deleted after 
+clicking the "OK" button.
 
-### Premium Partners
+![delete_modal](img/deleteModal.png)
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+Each action: adding, updating or deleting a channel results in displaying a notification in the upper right corner
+that the action was a success/error.
 
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+![toast](img/toast.png)
